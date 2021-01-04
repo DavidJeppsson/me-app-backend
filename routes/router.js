@@ -192,37 +192,6 @@ router.post("/reports",
     }
 );
 
-// router.post("/reports", (req, res, next) =>
-//     checkToken(req, res, next),
-//     (req, res) => {
-//
-//         console.log(req.body);
-//         db.run(
-//             "INSERT INTO report (kmom, content) VALUES (?, ?)",
-//             req.body.content,
-//             req.body.kmom,
-//             (err) => {
-//                 if (err) {
-//                     return.res.status(500).json({
-//                         data: {
-//                             status: err.status,
-//                             title: "Internal Server Error",
-//                             detail: err.message
-//                         }
-//                     });
-//                 }
-//
-//                 res.status(201).json({
-//                     data: {
-//                         status: 201,
-//                         msg: "Report added"
-//                     }
-//                 });
-//             };
-//         )
-//     }
-// );
-
 function checkToken(req, res, next) {
     const token = req.headers['x-access-token'];
 
@@ -236,101 +205,9 @@ function checkToken(req, res, next) {
                 }
             });
         }
-        
+
         next();
     });
 }
 
 module.exports = router;
-
-
-// router.post("/login", (req, res, next) => {
-//     db.get(
-//         "SELECT * FROM users WHERE email = ?",
-//         [req.body.email],
-//         (err, row) => {
-//             if (err) {
-//                 return res.status(500).json({
-//                     data: {
-//                         status: err.status,
-//                         title: "Internal Server Error",
-//                         detail: err.message
-//                     }
-//                 });
-//             }
-//
-//             if(!row) {
-//                 return res.status(404).json({
-//                     data: {
-//                         status: 404,
-//                         title: "User not found"
-//                     }
-//                 });
-//             }
-//
-//             if (!bcrypt.compareSync(req.body.password, row.password)) {
-//                 return res.status(404).json({
-//                     data: {
-//                         status: 404,
-//                         title: "Login failed, check password"
-//                     }
-//                 });
-//             };
-//
-//
-//             const payload = { email: req.body.email };
-//             const secret = process.env.JWT_SECRET;
-//             const token = jwt.sign(payload, secret, { expiresIn: "1h" });
-//
-//             const data = {
-//                 data: {
-//                     status: 200,
-//                     msg: "Login successful.",
-//                     token: token
-//                 }
-//             };
-//
-//            return res.json(data);
-//        });
-// });
-
-
-
-
-
-
-
-
-// app.get("/hello/:msg", (req, res) => {
-//     const data = {
-//         data: {
-//             msg: req.params.msg
-//         }
-//     };
-//
-//     res.json(data);
-// });
-//
-// app.get("/user", (req, res) => {
-//     res.json({
-//         data: {
-//             msg: "Got a GET request"
-//         }
-//     });
-// });
-//
-// app.post("/user", (req, res) => {
-//     res.status(201).json({
-//         data: {
-//             msg: "Got a POST request, sending back 201 Created"
-//         }
-//     });
-// });
-//
-// app.put("/user", (req, res) => {
-//     res.status(204).send();
-// });
-//
-// app.delete("/user", (req, res) => {
-//     res.status(204).send();
-// });

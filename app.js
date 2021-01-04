@@ -23,15 +23,6 @@ if (process.env.NODE_ENV !== "test") {
     app.use(morgan("combined")); // "combined" outputs Apache style LOGs
 }
 
-// // Middleware called for all routes.
-// // Middleware takes three params.
-// app.use((req, res, next) => {
-//     console.log("Method: " + req.method);
-//     console.log("Path: " + req.path);
-//     console.log(req.body);
-//     next();
-// });
-
 // Middleware called for all routes.
 // Middleware takes three params.
 app.use((req, res, next) => {
