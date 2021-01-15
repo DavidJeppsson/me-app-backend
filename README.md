@@ -1,5 +1,5 @@
 # README, report backend
-version 
+version 2.0.0
 
 ### Installation setup
 ```
@@ -8,7 +8,7 @@ npm install
 
 ### Create environment variable
 
-Create an environment variable called "JWT_SECRET", it should be a long string, but you can choose any string you want.
+Create an environment variable, it should be a long string, but you can choose any string you want.
 
 ```
 export JWT_SECRET='LongSecret1234509876CanBeAnythingButShouldB'
@@ -19,3 +19,6 @@ export JWT_SECRET='LongSecret1234509876CanBeAnythingButShouldB'
 ```
 npm start
 ```
+
+###GitHub
+[Repo on GitHub](https://github.com/DavidJeppsson/report-jsramverk-backend)
