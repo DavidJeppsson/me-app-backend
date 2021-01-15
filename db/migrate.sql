@@ -77,7 +77,7 @@ See Configuration Reference
 "),
 (2,
 "## README, report-backend
-version 2.0.0
+version 1.0.0
 
 ### Installation setup
 
