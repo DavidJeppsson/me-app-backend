@@ -34,12 +34,10 @@ router.get("/", (req, res, next) => {
         }
 
         return res.status(200).json({
-            data :  [
-                {
+            data : {
                     status: 200,
                     text: row.content
                 }
-            ]
         });
     }
 )
@@ -94,7 +92,7 @@ router.post("/register", (req, res, next) => {
         if (err) {
             return res.status(500).json({
                 errors: {
-                    status: err.status,
+                    status: 500,
                     title: "Internal Server Error",
                     detail: err.message
                 }
@@ -103,6 +101,7 @@ router.post("/register", (req, res, next) => {
 
         res.status(201).json({
             data: {
+                status: 201,
                 msg: "Created user"
             }
         });
@@ -111,6 +110,7 @@ router.post("/register", (req, res, next) => {
 
 
 router.post("/login", (req, res, next) => {
+    console.log(req.body)
     db.get(
         "SELECT * FROM users WHERE email = ?",
         [req.body.email],
@@ -152,7 +152,7 @@ router.post("/login", (req, res, next) => {
                 const data = {
                     data: {
                         status: 200,
-                        msg: "Login succeeded",
+                        title: "Login succeeded",
                         token: token
 
                     }
@@ -188,6 +188,28 @@ router.post("/reports",
                     msg: "Report added."
                 }
             });
+        });
+    }
+);
+
+router.put("/reports",
+    (req, res, next) => checkToken(req, res, next),
+    (req, res) => {
+        db.run(
+            "UPDATE report SET content = ? WHERE kmom = ?",
+            req.body.content,
+            req.body.kmom,
+        (err) => {
+            if (err) {
+                return res.status(500).json({
+                    errors: {
+                        status: 500,
+                        title: "Internal Server Error",
+                        detail: err.message
+                    }
+                });
+            }
+            res.status(204).send();
         });
     }
 );
